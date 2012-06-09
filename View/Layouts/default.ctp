@@ -1,5 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 <head>
 	<?php echo $this->Html->charset(); ?>
 	<title>
@@ -9,7 +9,10 @@
 	<?php
 		echo $this->Html->meta('icon');
 
-		//echo $this->Html->css('cake.generic');
+		echo $this->Html->css(array(
+			'reset',
+			'game'
+		));
 
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
@@ -23,13 +26,17 @@
 	<style type="text/css">
 		body {
 			background: url('/img/wall4.png');
+			margin: 0;
+			padding: 0;
 		}
 
-		#new-game-container {
+		header {
 			text-align:center;
+			padding:20px;
+			/*background: #417282;*/
 		}
 
-		#new-game-container > h1 {
+		header > h1 {
 			font-family: 'BebasNeueRegular', 'Arial Narrow', Arial, sans-serif;
 			font-size: 35px;
 			line-height: 35px;
@@ -40,12 +47,12 @@
 			padding: 0px 0px 5px 0px;
 		}
 
-		#new-game-container > h1 > span {
+		header > h1 > span {
 			color: #008dc1;
 			text-shadow: 0px 1px 1px rgba(255,255,255,0.8);
 		}
 
-		#game-container {
+		#game-running, #game-finished, #game-start {
 			text-align:center;
 		}
 
@@ -57,22 +64,24 @@
 			text-align:center;
 			height:85px;
 		}
+
+		#game-start {
+			padding-top:3Opx;
+		}
 	</style>
 </head>
 <body>
-	<div id="container">
-		<div id="header">
-			
-		</div>
-		<div id="content">
+	<header>
+		<h1>How many <span>CakePHP classes</span> do you know in 60 seconds?</h1>
+	</header>
+	<div id="content">
 
-			<?php echo $this->Session->flash(); ?>
+		<?php echo $this->Session->flash(); ?>
 
-			<?php echo $this->fetch('content'); ?>
-		</div>
-		<div id="footer">
+		<?php echo $this->fetch('content'); ?>
+	</div>
+	<div id="footer">
 
-		</div>
 	</div>
 	<?php echo $this->element('sql_dump'); ?>
 </body>

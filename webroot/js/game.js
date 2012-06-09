@@ -27,8 +27,8 @@ function Game(length) {
 			context: this
 		}).done(this.onCreateDone);
 
-		$('#new-game-container').css('display', 'none');
-		$('#game-container').css('display', 'block');
+		$('#game-start').css('display', 'none');
+		$('#game-running').css('display', 'block');
 	}
 
 	this.onCreateDone = function(data) {
@@ -109,8 +109,8 @@ function Game(length) {
 		$('#total-correct').text(gameData.Game.num_correct);
 		$('#permalink').text(gameData.Game.permalink);
 
-		$('#game-container').css('display', 'none');
-		$('#finished-game-container').css('display', 'block');
+		$('#game-running').css('display', 'none');
+		$('#game-finished').css('display', 'block');
 	}
 
 	this.tick = function() {
@@ -135,9 +135,11 @@ function Game(length) {
 }
 
 $(document).ready(function(){
-	$('#new-game').click(function(event){
+	$('#start-game-button').bind('click', function() {
 		currentGame = new Game(60);
 		currentGame.init();
+
+		return false;
 	});
 
 	$('#GuessGuess').keydown(function(e) {
