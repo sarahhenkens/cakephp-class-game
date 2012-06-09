@@ -106,3 +106,7 @@ CakeLog::config('error', array(
 	'scopes' => array('warning', 'error', 'critical', 'alert', 'emergency'),
 	'file' => 'error',
 ));
+
+//Load strings
+$strings = json_decode(file_get_contents(APP . 'Config' . DS . 'strings.json'));
+Configure::write('App.strings', $strings);
